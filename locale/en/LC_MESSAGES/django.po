@@ -1,0 +1,336 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PrimeBarber 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-29 21:52+0000\n"
+"PO-Revision-Date: 2025-11-28 18:00+0000\n"
+"Last-Translator: You\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# ======================
+# SETTINGS
+# ======================
+#: .\barbershop\settings.py:93
+msgid "Português"
+msgstr "Portuguese"
+
+#: .\barbershop\settings.py:94
+msgid "English"
+msgstr "English"
+
+# ======================
+# BOOKINGS / MESSAGES
+# ======================
+#: .\bookings\views.py:105 .\bookings\views.py:173
+msgid "Marcação criada com sucesso!"
+msgstr "Booking successfully created!"
+
+#: .\bookings\views.py:132 .\bookings\views.py:160
+msgid "Horário inválido."
+msgstr "Invalid date and time."
+
+#: .\bookings\views.py:196 .\bookings\views.py:217 .\bookings\views.py:234
+msgid "A tua conta não está registada como barbeiro."
+msgstr "Your account is not registered as a barber."
+
+#: .\bookings\views.py:223
+msgid "Marcação confirmada com sucesso."
+msgstr "Booking confirmed successfully."
+
+#: .\bookings\views.py:225
+msgid "Esta marcação já está confirmada."
+msgstr "This booking is already confirmed."
+
+#: .\bookings\views.py:240 .\bookings\views.py:251
+msgid "Marcação cancelada."
+msgstr "Booking canceled."
+
+#: .\bookings\views.py:242 .\bookings\views.py:253
+msgid "Esta marcação já está cancelada."
+msgstr "This booking is already canceled."
+
+#: .\bookings\views.py:270
+msgid "Não tens permissões para cancelar esta marcação."
+msgstr "You do not have permission to cancel this booking."
+
+#: .\bookings\views.py:274
+msgid "Esta marcação já estava cancelada."
+msgstr "This booking was already canceled."
+
+#: .\bookings\views.py:282
+msgid "Marcação cancelada com sucesso."
+msgstr "Booking successfully canceled."
+
+# ======================
+# LOGIN
+# ======================
+#: .\templates\accounts\login.html:8 .\templates\accounts\login.html:155
+msgid "Entrar na tua conta"
+msgstr "Sign in to your account"
+
+#: .\templates\accounts\login.html:169
+msgid "Nome de utilizador"
+msgstr "Username"
+
+#: .\templates\accounts\login.html:175 .\templates\accounts\signup.html:57
+msgid "Palavra-passe"
+msgstr "Password"
+
+#: .\templates\accounts\login.html:181
+msgid "Esqueceste a tua palavra-passe?"
+msgstr "Forgot your password?"
+
+#: .\templates\accounts\login.html:186
+msgid "Sign in"
+msgstr "Sign in"
+
+#: .\templates\accounts\login.html:193
+msgid "Ainda não tens conta?"
+msgstr "Don't have an account?"
+
+#: .\templates\accounts\login.html:195
+msgid "Criar uma nova conta"
+msgstr "Create a new account"
+
+# ======================
+# SIGNUP
+# ======================
+#: .\templates\accounts\signup.html:4 .\templates\accounts\signup.html:19
+#: .\templates\base.html:142
+msgid "Criar conta"
+msgstr "Create account"
+
+#: .\templates\accounts\signup.html:22
+msgid "Preenche os dados abaixo para te registares."
+msgstr "Fill in the information below to register."
+
+#: .\templates\accounts\signup.html:31
+msgid "Utilizador"
+msgstr "Username"
+
+#: .\templates\accounts\signup.html:92
+msgid "Confirmação da palavra-passe"
+msgstr "Confirm password"
+
+#: .\templates\accounts\signup.html:115
+msgid "Registar"
+msgstr "Register"
+
+#: .\templates\accounts\signup.html:120
+msgid "Já tens conta?"
+msgstr "Already have an account?"
+
+#: .\templates\accounts\signup.html:122 .\templates\base.html:138
+msgid "Entrar"
+msgstr "Sign in"
+
+#: .\templates\base.html:54
+msgid "Serviços"
+msgstr "Services"
+
+#: .\templates\base.html:60
+msgid "Minhas marcações"
+msgstr "My bookings"
+
+#: .\templates\base.html:125
+msgid "Olá,"
+msgstr "Hello,"
+
+#: .\templates\base.html:132
+msgid "Sair"
+msgstr "Sign out"
+
+#: .\templates\base.html:157
+msgid "Todos os direitos reservados"
+msgstr "All rights reserved"
+
+#: .\templates\booking_wizard\choose_barber.html:4
+#: .\templates\booking_wizard\services_list.html:42
+msgid "Escolher barbeiro"
+msgstr "Choosing a barber"
+
+#: .\templates\booking_wizard\choose_barber.html:9
+#, python-format
+msgid "Escolher barbeiro — %(nome)s"
+msgstr "Choose barber — %(nome)s"
+
+#: .\templates\booking_wizard\choose_barber.html:26
+msgid "Escolher data & hora"
+msgstr "Choose date & time"
+
+#: .\templates\booking_wizard\choose_barber.html:31
+#, fuzzy
+#| msgid "Nenhum serviço disponível no momento."
+msgid "Nenhum barbeiro disponível."
+msgstr "No services available at the moment."
+
+#: .\templates\booking_wizard\choose_datetime.html:7
+#| msgid "Escolher barbeiro"
+msgid "Escolher data"
+msgstr "Choosing a barber"
+
+#: .\templates\booking_wizard\choose_datetime.html:7
+msgid "hora"
+msgstr "time"
+
+#: .\templates\booking_wizard\choose_datetime.html:25
+#| msgid "Data / Hora"
+msgid "Data e Hora"
+msgstr "Date / Time"
+
+#: .\templates\booking_wizard\choose_datetime.html:34
+#: .\templates\bookings\agenda_barbeiro.html:107
+msgid "Confirmar"
+msgstr "Confirm"
+
+#: .\templates\booking_wizard\services_list.html:4
+#: .\templates\booking_wizard\services_list.html:8
+msgid "Escolha o serviço"
+msgstr "Choose the service"
+
+#: .\templates\booking_wizard\services_list.html:53 .\templates\index.html:98
+msgid "Nenhum serviço disponível no momento."
+msgstr "No services available at the moment."
+
+# ======================
+# BARBER AGENDA
+# ======================
+#: .\templates\bookings\agenda_barbeiro.html:10
+msgid "Agenda do Barbeiro"
+msgstr "Barber's schedule"
+
+#: .\templates\bookings\agenda_barbeiro.html:12
+#: .\templates\bookings\dashboard.html:18
+msgid "Barbeiro"
+msgstr "Barber"
+
+#: .\templates\bookings\agenda_barbeiro.html:32
+#: .\templates\bookings\dashboard.html:17
+msgid "Data / Hora"
+msgstr "Date / Time"
+
+#: .\templates\bookings\agenda_barbeiro.html:33
+msgid "Cliente"
+msgstr "Client"
+
+#: .\templates\bookings\agenda_barbeiro.html:34
+#: .\templates\bookings\dashboard.html:19
+msgid "Serviço"
+msgstr "Service"
+
+#: .\templates\bookings\agenda_barbeiro.html:36
+#: .\templates\bookings\dashboard.html:21
+msgid "Ações"
+msgstr "Actions"
+
+#: .\templates\bookings\agenda_barbeiro.html:89
+#: .\templates\bookings\dashboard.html:63
+msgid "Pendente"
+msgstr "Pending"
+
+#: .\templates\bookings\agenda_barbeiro.html:91
+#: .\templates\bookings\dashboard.html:67
+msgid "Confirmada"
+msgstr "Confirmed"
+
+#: .\templates\bookings\agenda_barbeiro.html:93
+#: .\templates\bookings\dashboard.html:71
+msgid "Cancelada"
+msgstr "Canceled"
+
+#: .\templates\bookings\agenda_barbeiro.html:115
+msgid " Cancelar"
+msgstr " Cancel"
+
+#: .\templates\bookings\agenda_barbeiro.html:129
+msgid " Nenhuma marcação agendada"
+msgstr " No scheduled bookings"
+
+# ======================
+# DASHBOARD
+# ======================
+#: .\templates\bookings\dashboard.html:4 .\templates\bookings\dashboard.html:9
+msgid "As minhas marcações"
+msgstr "My bookings"
+
+#: .\templates\bookings\dashboard.html:20
+msgid "Status"
+msgstr "Status"
+
+#: .\templates\bookings\dashboard.html:85
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: .\templates\bookings\dashboard.html:98
+msgid "Ainda não tens marcações."
+msgstr "You don't have any bookings yet."
+
+#: .\templates\bookings\dashboard.html:104
+msgid "Nova marcação"
+msgstr "New booking"
+
+# ======================
+# HOME / INDEX
+# ======================
+#: .\templates\index.html:4
+msgid "Barbershop"
+msgstr "Barbershop"
+
+#: .\templates\index.html:11
+msgid "Bem-vindo à Barbershop"
+msgstr "Welcome to Barbershop"
+
+#: .\templates\index.html:13
+msgid "Agende o seu corte com os melhores profissionais"
+msgstr "Book your haircut with the best professionals"
+
+#: .\templates\index.html:17
+msgid "Marcar Agora"
+msgstr "Book now"
+
+#: .\templates\index.html:20
+msgid "Ver Serviços"
+msgstr "View services"
+
+#: .\templates\index.html:29
+msgid "Nossos Serviços"
+msgstr "Our services"
+
+#: .\templates\index.html:48
+msgid "Agendar"
+msgstr "Book"
+
+#: .\templates\index.html:57
+msgid "Ainda não há serviços cadastrados."
+msgstr "No services available yet."
+
+#: .\templates\index.html:74
+msgid "Tabelas de Preços"
+msgstr "Price list"
+
+#: .\templates\index.html:76
+msgid "Escolha o serviço ideal para você."
+msgstr "Choose the ideal service"
+
+#: .\templates\index.html:77
+msgid "Valores transparentes e qualidade garantida."
+msgstr "Transparent prices and guaranteed quality"
+
+#: .\templates\index.html:91
+msgid "min"
+msgstr "min"
+
+#: .\templates\index.html:105
+msgid "Ver todos os serviços"
+msgstr "View all services"
+
+# ======================
+# BASE / NAV
+# ======================
+#~ msgid "Services"
+#~ msgstr "Services"

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-4 text-center">Confirmar marcação</h2>
+
+<div class="card shadow-sm mx-auto" style="max-width: 520px;">
+  <div class="card-body">
+    <p><strong>Serviço:</strong> {{ servico.nome }} — {{ servico.preco }} €</p>
+    <p><strong>Barbeiro:</strong> {{ barbeiro.user.get_full_name|default:barbeiro.user.username }}</p>
+    <p><strong>Data/Hora:</strong> {{ slot|date:"d/m/Y H:i" }}</p>
+
+    <form method="post" action="{% url 'bookings:create_booking' %}">
+      {% csrf_token %}
+      <input type="hidden" name="servico_id" value="{{ servico.id }}">
+      <input type="hidden" name="barbeiro_id" value="{{ barbeiro.id }}">
+      <input type="hidden" name="slot" value="{{ slot|date:'c' }}">
+      <div class="d-flex gap-2">
+        <a href="javascript:history.back()" class="btn btn-outline-secondary w-50">Voltar</a>
+        <button class="btn btn-primary w-50">Confirmar</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

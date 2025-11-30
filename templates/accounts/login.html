@@ -1,0 +1,207 @@
+{% load i18n static widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Entrar na tua conta" %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Fundo geral com “textura” e mood de barbearia */
+        body.login-body {
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Fundo escuro com padrão sutil */
+            background-color: #0b0c10;
+            background-image:
+                radial-gradient(circle at 0 0, rgba(255,255,255,0.05) 0, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(255,255,255,0.04) 0, transparent 40%),
+                repeating-linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.04),
+                    rgba(255,255,255,0.04) 1px,
+                    transparent 1px,
+                    transparent 8px
+                );
+            background-attachment: fixed;
+            color: #f8f9fa;
+        }
+
+        /* Overlay leve para deixar tudo mais legível */
+        .login-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(0, 123, 255, 0.25), transparent 55%),
+                        radial-gradient(circle at bottom, rgba(220, 53, 69, 0.25), transparent 55%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 18px;
+            padding: 2.5rem 2.25rem;
+            background: rgba(15, 15, 20, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* Faixa tipo “barber pole” no topo do card */
+        .login-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            border-radius: 18px 18px 0 0;
+            background-image: repeating-linear-gradient(
+                135deg,
+                #dc3545,
+                #dc3545 12px,
+                #ffffff 12px,
+                #ffffff 24px,
+                #0d6efd 24px,
+                #0d6efd 36px
+            );
+        }
+
+        .login-logo img {
+            width: 120px;
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.7));
+        }
+
+        .login-title {
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #f8f9fa;
+        }
+
+        .form-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #adb5bd;
+        }
+
+        .form-control {
+            background-color: #14151b;
+            border-color: #343a40;
+            color: #f8f9fa;
+        }
+
+        .form-control:focus {
+            background-color: #151621;
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.35);
+        }
+
+        .btn-login {
+            background: linear-gradient(90deg, #0d6efd, #6610f2);
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .btn-login:hover {
+            filter: brightness(1.05);
+        }
+
+        .login-muted-link {
+            color: #ced4da;
+        }
+
+        .login-muted-link:hover {
+            color: #ffffff;
+        }
+
+        .login-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+
+<body class="login-body">
+
+<div class="login-overlay"></div>
+
+<div class="container">
+    <div class="d-flex justify-content-center align-items-center min-vh-100">
+        <div class="login-card">
+
+            <!-- LOGO -->
+            <div class="login-logo text-center mb-3">
+                <img src="{% static 'barbershop/images/logo.png' %}" alt="Barbershop logo">
+            </div>
+
+            <h5 class="text-center mb-4 login-title">
+                {% trans "Entrar na tua conta" %}
+            </h5>
+
+            <form method="post" action="">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger py-2">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                <!-- Username -->
+                <div class="mb-3">
+                    <label class="form-label">{% trans "Nome de utilizador" %}</label>
+                    {% render_field form.username class="form-control" placeholder="barber_user" %}
+                </div>
+
+                <!-- Password -->
+                <div class="mb-1">
+                    <label class="form-label">{% trans "Palavra-passe" %}</label>
+                    {% render_field form.password class="form-control" placeholder="********" %}
+                </div>
+
+                <div class="d-flex justify-content-end mt-1 mb-3">
+                    <a href="#" class="small login-muted-link text-decoration-none">
+                        {% trans "Esqueceste a tua palavra-passe?" %}
+                    </a>
+                </div>
+
+                <button type="submit" class="btn btn-login w-100">
+                    {% trans "Sign in" %}
+                </button>
+            </form>
+
+            <div class="login-divider"></div>
+
+            <div class="text-center small">
+                {% trans "Ainda não tens conta?" %}
+                <a href="{% url 'accounts:signup' %}" class="text-decoration-none">
+                    {% trans "Criar uma nova conta" %}
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container py-5">
+
+    <!-- Cabeçalho -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-lg-8 text-center">
+            <h2 class="mb-2">{% trans "Agenda do Barbeiro" %}</h2>
+            <p class="mb-1">
+                <strong>{% trans "Barbeiro" %}:</strong>
+                {{ barbeiro.user.get_full_name|default:barbeiro.user.username }}
+            </p>
+            {% if barbeiro.bio %}
+                <p class="text-muted small mb-0">
+                    <strong>Bio:</strong> {{ barbeiro.bio }}
+                </p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Tabela -->
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+
+            {% if marcacoes %}
+                <div class="table-responsive">
+                    <table class="table mb-0 align-middle">
+                        <thead class="table-light">
+                            <tr class="text-center">
+                                <th style="width: 15%;">{% trans "Data / Hora" %}</th>
+                                <th style="width: 20%;">{% trans "Cliente" %}</th>
+                                <th style="width: 35%;">{% trans "Serviço" %}</th>
+                                <th style="width: 10%;">Status</th>
+                                <th style="width: 20%;">{% trans "Ações" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for m in marcacoes %}
+                            <tr class="text-center">
+                                <!-- Data / Hora -->
+                                <td class="text-nowrap">
+                                    {{ m.inicio|date:"d/m/Y H:i" }}
+                                </td>
+
+                                <!-- Cliente -->
+                                <td>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        {% if m.cliente.profile.avatar %}
+                                            <img src="{{ m.cliente.profile.avatar.url }}"
+                                                 alt="{{ m.cliente.get_full_name }}"
+                                                 class="rounded-circle me-2"
+                                                 style="width:40px;height:40px;object-fit:cover;">
+                                        {% endif %}
+                                        <span>
+                                            {{ m.cliente.get_full_name|default:m.cliente.username }}
+                                        </span>
+                                    </div>
+                                </td>
+
+                              <!-- Serviço -->
+<td>
+    <div class="d-flex align-items-center">
+
+        {% if m.servico.image %}
+            <img src="{{ m.servico.image.url }}"
+                 alt="{{ m.servico.nome }}"
+                 class="rounded me-3"
+                 style="width:60px;height:60px;object-fit:cover;">
+        {% endif %}
+
+        <div class="text-start" style="max-width: 250px;">
+            <div class="fw-semibold text-break" style="line-height: 1.2;">
+                {{ m.servico.nome }}
+            </div>
+            <div class="text-muted small">
+                {{ m.servico.preco }} € • {{ m.servico.duracao_min }} min
+            </div>
+        </div>
+
+    </div>
+</td>
+
+
+                                <!-- Status -->
+                                <td>
+                                    {% if m.status == "pending" %}
+                                        <span class="badge bg-warning text-dark">{% trans "Pendente" %}</span>
+                                    {% elif m.status == "confirmed" %}
+                                        <span class="badge bg-success">{% trans "Confirmada" %}</span>
+                                    {% elif m.status == "cancelled" %}
+                                        <span class="badge bg-danger">{% trans "Cancelada" %}</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">{{ m.get_status_display }}</span>
+                                    {% endif %}
+                                </td>
+
+                                <!-- Ações -->
+                               <td>
+    <div class="d-flex justify-content-center gap-2">
+
+        {# só mostra "Confirmar" se estiver pendente #}
+        {% if m.status == "pending" %}
+            <a href="{% url 'bookings:confirm_booking' m.pk %}"
+               class="btn btn-sm btn-success">
+                {% trans "Confirmar" %}
+            </a>
+        {% endif %}
+
+        {# "Cancelar" aparece para pendente/confirmada, mas não para cancelada #}
+        {% if m.status != "cancelled" %}
+            <a href="{% url 'bookings:cancel_booking_barber' m.pk %}"
+               class="btn btn-sm btn-outline-danger">
+               {% trans " Cancelar" %}
+            </a>
+        {% endif %}
+
+    </div>
+</td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="p-4 text-center text-muted">
+                   {% trans " Nenhuma marcação agendada" %}.
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

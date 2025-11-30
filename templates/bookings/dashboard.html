@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "As minhas marcações" %} - Prime Barber{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h2 class="text-center mb-4">
+        {% trans "As minhas marcações" %}
+    </h2>
+
+    {% if marcacoes %}
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>{% trans "Data / Hora" %}</th>
+                        <th>{% trans "Barbeiro" %}</th>
+                        <th style="min-width:260px;">{% trans "Serviço" %}</th>
+                        <th class="text-center">{% trans "Status" %}</th>
+                        <th class="text-end">{% trans "Ações" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for m in marcacoes %}
+                        <tr>
+                            <!-- DATA / HORA -->
+                            <td class="align-middle">
+                                {{ m.inicio|date:"d/m/Y H:i" }}
+                            </td>
+
+                            <!-- BARBEIRO -->
+                            <td class="align-middle">
+                                {{ m.barbeiro.user.get_full_name|default:m.barbeiro.user.username }}
+                            </td>
+
+                            <!-- SERVIÇO (igual ao layout da agenda do barbeiro) -->
+                            <td class="align-middle">
+                                <div class="d-flex align-items-center">
+                                    {% if m.servico.image %}
+                                        <img
+                                            src="{{ m.servico.image.url }}"
+                                            alt="{{ m.servico.nome }}"
+                                            class="rounded me-3"
+                                            style="width:60px; height:60px; object-fit:cover;"
+                                        >
+                                    {% endif %}
+                                    <div class="small">
+                                        <div class="fw-semibold">
+                                            {{ m.servico.nome }}
+                                        </div>
+                                        <div class="text-muted">
+                                            {{ m.servico.preco }} € • {{ m.servico.duracao_min }} min
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <!-- STATUS -->
+                            <td class="align-middle text-center">
+                                {% if m.status == "pending" %}
+                                    <span class="badge bg-warning text-dark">
+                                        {% trans "Pendente" %}
+                                    </span>
+                                {% elif m.status == "confirmed" %}
+                                    <span class="badge bg-success">
+                                        {% trans "Confirmada" %}
+                                    </span>
+                                {% elif m.status == "cancelled" %}
+                                    <span class="badge bg-secondary">
+                                        {% trans "Cancelada" %}
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-light text-dark">
+                                        {{ m.get_status_display }}
+                                    </span>
+                                {% endif %}
+                            </td>
+
+                            <!-- AÇÕES -->
+                            <td class="align-middle text-end">
+                                {% if m.status != "cancelled" %}
+                                    <a href="{% url 'bookings:cancel_booking' m.pk %}"
+                                       class="btn btn-sm btn-outline-danger">
+                                        {% trans "Cancelar" %}
+                                    </a>
+                                {% else %}
+                                    <span class="text-muted small">—</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-center text-muted mb-4">
+            {% trans "Ainda não tens marcações." %}
+        </p>
+    {% endif %}
+
+    <div class="text-center mt-3">
+        <a href="{% url 'bookings:services_list' %}" class="btn btn-primary">
+            {% trans "Nova marcação" %}
+        </a>
+    </div>
+</div>
+{% endblock %}

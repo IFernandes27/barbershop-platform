@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Escolher barbeiro" %}{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <h2 class="mb-4 text-center">
+    {% blocktrans with nome=servico.nome %}Escolher barbeiro — {{ nome }}{% endblocktrans %}
+  </h2>
+
+  <div class="row">
+    {% for b in barbeiros %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm text-center p-3">
+          {% if b.foto %}
+            <img src="{{ b.foto.url }}" class="rounded-circle mb-3"
+                 width="96" height="96" style="object-fit:cover;">
+          {% endif %}
+          <h5 class="mb-1">{{ b.user.get_full_name|default:b.user.username }}</h5>
+          {% if b.bio %}
+            <p class="text-muted small">{{ b.bio }}</p>
+          {% endif %}
+          <a class="btn btn-primary"
+             href="{% url 'bookings:choose_datetime' servico.id b.id %}">
+            {% trans "Escolher data & hora" %}
+          </a>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-center">{% trans "Nenhum barbeiro disponível." %}</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

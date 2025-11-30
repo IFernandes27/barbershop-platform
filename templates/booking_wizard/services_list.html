@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Escolha o serviço" %}{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-5">{% trans "Escolha o serviço" %}</h2>
+
+    {% if servicos %}
+        <div class="row g-4">
+            {% for servico in servicos %}
+                <!-- todas as colunas ficam com a mesma altura -->
+                <div class="col-12 col-md-6 col-lg-4 d-flex">
+                    <div class="card flex-fill h-100 shadow-sm border-0">
+
+                        {% if servico.image %}
+                            <img src="{{ servico.image.url }}"
+                                 alt="{{ servico.nome }}"
+                                 class="card-img-top img-fluid"
+                                 style="height: 260px; width: 100%; object-fit: cover;">
+                        {% endif %}
+
+                        <div class="card-body text-center d-flex flex-column">
+                            <h5 class="card-title fw-semibold mb-2">
+                                {{ servico.nome }}
+                            </h5>
+
+                            {% if servico.descricao %}
+                                <p class="card-text text-muted small mb-2">
+                                    {{ servico.descricao }}
+                                </p>
+                            {% endif %}
+
+                            <p class="fw-bold mb-3">
+                                {{ servico.preco }} €
+                            </p>
+
+                            <div class="mt-auto">
+                                <a href="{% url 'bookings:choose_barber' servico.id %}"
+                                   class="btn btn-primary">
+                                    {% trans "Escolher barbeiro" %}
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">
+            {% trans "Nenhum serviço disponível no momento." %}
+        </p>
+    {% endif %}
+</div>
+{% endblock %}
