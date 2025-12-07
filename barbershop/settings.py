@@ -6,7 +6,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'dev-secret-key'  # substitui em produção
 DEBUG = True
-ALLOWED_HOSTS: list[str] = []
+ALLOWED_HOSTS = ["*", "barbershop-platform.onrender.com"]
+
 
 # ---------------------------
 # APPS
